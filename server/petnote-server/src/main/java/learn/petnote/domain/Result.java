@@ -43,12 +43,11 @@ public class Result <T>{
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Result<?> result = (Result<?>) o;
-        return Objects.equals(messages, result.messages) && Objects.equals(payload, result.payload) && resultType == result.resultType;
+        return Objects.equals(messages, result.messages) && Objects.equals(payload, result.payload) && getResultType() == result.getResultType();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(messages, payload, resultType);
+        return Objects.hash(messages, payload, getResultType());
     }
-
 }

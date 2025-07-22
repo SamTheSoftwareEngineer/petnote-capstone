@@ -32,12 +32,28 @@ public class UserService {
             }
         }
 
+        // Check username and email uniqueness only if no validation errors
+        if (result.isSuccess()) {
+            if (repository.findByUsername(user.getUsername()) != null) {
+                result.addErrorMessage("Username is already taken", ResultType.INVALID);
+            }
+            if (repository.findByEmail(user.getEmail()) != null) {
+                result.addErrorMessage("Duplicate emails are not allowed", ResultType.INVALID);
+            }
+        }
+
+        // If no errors, save the user
         if (result.isSuccess()) {
             User created = repository.createUser(user);
             result.setpayload(created);
         }
 
         return result;
+    }
+
+
+    public User findByEmail(String email) {
+        return repository.findByEmail(email);
     }
 
     public User findByUsername(String username) {
@@ -61,5 +77,6 @@ public class UserService {
 
         return result;
     }
+
 }
 

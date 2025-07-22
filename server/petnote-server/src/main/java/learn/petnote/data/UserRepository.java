@@ -8,4 +8,7 @@ public interface UserRepository {
 
     public User createUser(User user);
 
+    public User findByEmail(String email);
+
+
 }

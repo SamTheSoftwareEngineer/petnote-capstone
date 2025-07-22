@@ -67,6 +67,39 @@ class UserServiceTest {
         assertEquals(expected, actual);
     }
 
+
+    @Test
+    void createUser_failsIfUsernameExists() {
+        User user = new User();
+        user.setUsername("existingUser");
+        user.setEmail("newemail@example.com");
+        user.setPassword("password123");
+
+        when(repository.findByUsername("existingUser"))
+                .thenReturn(new User());
+
+        Result<User> result = service.createUser(user);
+
+        assertFalse(result.isSuccess());
+        assertTrue(result.getErrorMessages().contains("Username is already taken"));
+    }
+
+    @Test
+    void createUser_failsIfEmailExists() {
+        User user = new User();
+        user.setUsername("newuser");
+        user.setEmail("existingemail@example.com");
+        user.setPassword("password123");
+
+        when(repository.findByUsername("newuser")).thenReturn(null);
+        when(repository.findByEmail("existingemail@example.com")).thenReturn(new User());
+
+        Result<User> result = service.createUser(user);
+
+        assertFalse(result.isSuccess());
+        assertTrue(result.getErrorMessages().contains("Duplicate emails are not allowed"));
+    }
+
     @Nested
     class Authenticate {
         @Test
@@ -90,7 +123,10 @@ class UserServiceTest {
 
             Result<User> actual = service.authenticate(username, "wrongPassword");
 
-            assertEquals(expected, actual);
+            assertEquals(ResultType.INVALID, actual.getResultType());
+            assertTrue(actual.getErrorMessages().contains("Incorrect password"));
+            System.out.println(actual.getpayload());
+            assertNull(actual.getpayload());
         }
 
         @Test

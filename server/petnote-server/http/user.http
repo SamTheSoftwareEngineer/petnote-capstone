@@ -1,0 +1,71 @@
+@url = http://localhost:8080/api/user
+
+# happy path
+POST {{url}}
+Content-Type: application/json
+
+{
+    "username": "test user 1",
+    "email": "testuser1@email.com",
+    "password": "password"
+}
+
+###
+
+#unhappy path --> duplicate email
+POST {{url}}
+Content-Type: application/json
+
+{
+    "username": "test user 1",
+    "email": "testuser1@email.com",
+    "password": "password"
+}
+
+###
+
+#unhappy path --> username, password, and email are blank
+
+POST {{url}}
+Content-Type: application/json
+
+{
+    "username": "",
+    "password": "",
+    "email": ""
+}
+
+###
+
+# happy path
+POST {{url}}/authenticate
+Content-Type: application/json
+
+{
+    "username": "user1",
+    "password": "password123"
+}
+
+###
+
+# user not found
+POST {{url}}/authenticate
+Content-Type: application/json
+
+{
+    "username": "zzzz",
+    "password": "password"
+}
+
+###
+
+# incorrect password
+POST {{url}}/authenticate
+Content-Type: application/json
+
+{
+    "username": "user1",
+    "password": "wrongPassword"
+}
+
+

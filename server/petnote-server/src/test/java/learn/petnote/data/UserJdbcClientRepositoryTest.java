@@ -24,7 +24,7 @@ class UserJdbcClientRepositoryTest {
     }
 
     @Test
-    void createUser() {
+    void createUserHappyPath() {
         User toCreate = new User(0, "username", "user1@email.com", "password");
         User expected = new User(4, "username", "user1@email.com", "password");
 
@@ -45,6 +45,26 @@ class UserJdbcClientRepositoryTest {
         User user = repository.findByUsername("samaira");
         assertNull(user);
     }
+
+    @Test
+    void findByEmail_returnsCorrectUser() {
+        User result = repository.findByEmail("email1@email.com");
+
+        assertNotNull(result);
+        assertEquals("user1", result.getUsername());
+        assertEquals("email1@email.com", result.getEmail());
+        assertEquals("password123", result.getPassword());
+    }
+
+    @Test
+    void findByEmail_returnsNullWhenNotFound() {
+        User result = repository.findByEmail("nope@example.com");
+
+        assertNull(result);
+    }
+
 }
+
+
 
 

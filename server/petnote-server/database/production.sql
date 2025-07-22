@@ -9,7 +9,7 @@ CREATE TABLE `user` (
   `password` varchar(50) NOT NULL,
   `profilePictureURL` text,
   `isVerified` boolean DEFAULT false,
-  `createdAt` timestamp DEFAULT (now())
+  `createdAt` timestamp default current_timestamp
 );
 
 CREATE TABLE `pet` (
@@ -17,10 +17,11 @@ CREATE TABLE `pet` (
   `profilePictureURL` text,
   `petName` varchar(100) NOT NULL,
   `breed` varchar(100),
+  `species` varchar(100),
   `age` int,
   `weight` float,
   `userId` int,
-  `createdAt` timestamp DEFAULT (now())
+  `createdAt` timestamp default current_timestamp
 );
 
 CREATE TABLE `activity` (
@@ -28,21 +29,24 @@ CREATE TABLE `activity` (
   `activityDate` datetime NOT NULL,
   `activityName` varchar(100),
   `petId` int NOT NULL,
-  `userId` int NOT NULL
+  `userId` int NOT NULL,
+  `completed` boolean
 );
 
 CREATE TABLE `note` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `createdAt` datetime NOT NULL,
-  `editedAt` datetime,
+  `createdAt` datetime NOT NULL default current_timestamp,
+  `editedAt` datetime default current_timestamp,
   `description` varchar(500),
   `pet_id` int NOT NULL
 );
 
-ALTER TABLE `Note` ADD FOREIGN KEY (`id`) REFERENCES `Pet` (`id`) on delete cascade;
+ALTER TABLE `note` ADD FOREIGN KEY (`pet_id`) REFERENCES `pet` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `Activity` ADD FOREIGN KEY (`petId`) REFERENCES `Pet` (`id`) on delete cascade;
+ALTER TABLE `activity` ADD FOREIGN KEY (`petId`) REFERENCES `pet` (`id`) on delete cascade;
 
-ALTER TABLE `Activity` ADD FOREIGN KEY (`userId`) REFERENCES `User` (`id`) on delete cascade;
+ALTER TABLE `activity` ADD FOREIGN KEY (`userId`) REFERENCES `user` (`id`) on delete cascade;
 
-ALTER TABLE `Pet` ADD FOREIGN KEY (`userId`) REFERENCES `User` (`id`) on delete cascade;
+ALTER TABLE `pet` ADD FOREIGN KEY (`userId`) REFERENCES `user` (`id`) on delete cascade;
+
+

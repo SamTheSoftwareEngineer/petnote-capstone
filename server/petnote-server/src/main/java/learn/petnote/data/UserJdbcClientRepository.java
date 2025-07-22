@@ -51,4 +51,16 @@ public class UserJdbcClientRepository implements UserRepository{
         return user;
     }
 
-}
+    @Override
+    public User findByEmail(String email) {
+        final String sql = """
+                select * from `user` where email = :email""";
+
+        return jdbcClient.sql(sql)
+                .param("email", email)
+                .query(User.class)
+                .optional().orElse(null);
+    }
+
+    }
+
