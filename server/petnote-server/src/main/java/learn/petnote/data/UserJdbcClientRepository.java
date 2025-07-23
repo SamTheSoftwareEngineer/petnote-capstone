@@ -30,8 +30,8 @@ public class UserJdbcClientRepository implements UserRepository{
     @Override
     public User createUser(User user) {
         final String sql = """
-                insert into `user` (username, email, `password`)
-                values (:username, :email, :password)
+                insert into `user` (username, email, `password`, verificationToken, isVerified, createdAt)
+                values (:username, :email, :password, :verificationToken, :isVerified, :createdAt)
                 """;
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -40,6 +40,9 @@ public class UserJdbcClientRepository implements UserRepository{
                 .param("username", user.getUsername())
                 .param("email", user.getEmail())
                 .param("password", user.getPassword())
+                .param("verificationToken", user.getVerificationToken())
+                .param("isVerified", user.isVerified())
+                .param("createdAt", user.getCreatedAt())
                 .update(keyHolder, "id");
 
         if (rowsAffected == 0) {
@@ -62,5 +65,30 @@ public class UserJdbcClientRepository implements UserRepository{
                 .optional().orElse(null);
     }
 
+    @Override
+    public User findByVerificationToken(String token) {
+        final String sql = """
+                select * from user where verificationToken = :verificationToken
+                """;
+
+        return jdbcClient.sql(sql)
+                .param("verificationToken", token)
+                .query(User.class)
+                .optional().orElse(null);
     }
+
+    @Override
+    public boolean verifyUser(String token) {
+        final String sql = """
+                update `user`
+                set isVerified = true, verificationToken = null
+                where verificationToken = ?
+                """;
+
+        return jdbcClient.sql(sql)
+                .param(token)
+                .update() > 0;
+    }
+
+}
 

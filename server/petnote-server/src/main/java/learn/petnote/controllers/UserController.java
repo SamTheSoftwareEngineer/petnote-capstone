@@ -55,4 +55,23 @@ public class UserController {
             return new ResponseEntity<>(result.getErrorMessages(), HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @GetMapping("/verify")
+    public ResponseEntity<String> verifyUser(@RequestParam("token") String token) {
+        System.out.println("Verify called with token: " + token);
+        boolean verified = service.verifyUser(token);
+
+        System.out.println("Verification result: " + verified);
+
+        if (verified) {
+            return ResponseEntity.ok("Your email has been verified. You may now log in.");
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Invalid or expired verification link.");
+        }
+    }
+
+
+
 }

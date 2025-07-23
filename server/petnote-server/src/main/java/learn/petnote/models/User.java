@@ -17,18 +17,20 @@ public class User {
     private String password;
     private String profilePictureURL;
     private boolean isVerified;
+    private String verificationToken;
     private LocalDateTime createdAt;
 
     public User() {
     }
 
-    public User(int id, String username, String email, String password, String profilePictureURL, boolean isVerified, LocalDateTime createdAt) {
+    public User(int id, String username, String email, String password, String profilePictureURL, boolean isVerified, String verificationToken, LocalDateTime createdAt) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.profilePictureURL = profilePictureURL;
         this.isVerified = isVerified;
+        this.verificationToken = verificationToken;
         this.createdAt = createdAt;
     }
 
@@ -93,6 +95,14 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
     }
 
     @Override

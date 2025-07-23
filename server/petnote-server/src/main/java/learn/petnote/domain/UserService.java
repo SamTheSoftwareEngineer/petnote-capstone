@@ -9,14 +9,17 @@ import learn.petnote.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class UserService {
 
     UserRepository repository;
+    GmailMailService gmailMailService;
 
-    public UserService(UserRepository repository) {
+    public UserService(UserRepository repository, GmailMailService gmailMailService) {
         this.repository = repository;
+        this.gmailMailService = gmailMailService;
     }
 
     public Result<User> createUser(User user) {
@@ -44,7 +47,13 @@ public class UserService {
 
         // If no errors, save the user
         if (result.isSuccess()) {
+            user.setVerified(false);
+            user.setVerificationToken(UUID.randomUUID().toString());
             User created = repository.createUser(user);
+            System.out.println("User created with id:" + created.getId() + " and verification token: " + created.getVerificationToken());
+
+            gmailMailService.sendVerificationEmail(created);
+            System.out.println("sending verification to email: " + created.getEmail());
             result.setpayload(created);
         }
 
@@ -76,6 +85,19 @@ public class UserService {
         }
 
         return result;
+    }
+
+    public boolean verifyUser(String token) {
+        User user = repository.findByVerificationToken(token);
+        if (user == null) {
+            return false;
+        }
+
+        if (user.isVerified()) {
+            return true;
+        }
+
+        return repository.verifyUser(token);
     }
 
 }
