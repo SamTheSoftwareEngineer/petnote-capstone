@@ -9,5 +9,5 @@ public interface PetRepository {
     List<Pet> findByUserId(int userId);
     Pet findById(int id);
     boolean update(Pet pet);
-    boolean deleteById(int id, int userId);
+    boolean deleteById(int id);
 }

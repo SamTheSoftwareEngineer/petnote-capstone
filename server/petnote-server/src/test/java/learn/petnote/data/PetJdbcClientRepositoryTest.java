@@ -70,7 +70,7 @@ class PetJdbcClientRepositoryTest {
     @Test
     void deleteById() {
         Pet pet = repository.create(makePet("Ghost"));
-        boolean deleted = repository.deleteById(pet.getId(), pet.getUserId());
+        boolean deleted = repository.deleteById(pet.getId());
         assertTrue(deleted);
 
         Pet shouldBeGone = repository.findById(pet.getId());
@@ -93,7 +93,7 @@ class PetJdbcClientRepositoryTest {
 
     @Test
     void deleteByIdNonExistent() {
-        boolean deleted = repository.deleteById(99999, 1); // Non-existent ID
+        boolean deleted = repository.deleteById(99999); // Non-existent ID
         assertFalse(deleted, "Should not delete anything for non-existent pet ID");
     }
 

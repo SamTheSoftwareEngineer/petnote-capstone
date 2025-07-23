@@ -1,10 +1,15 @@
 package learn.petnote.models;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 public class Pet {
+    @NotNull(message = "Pet id must be present ")
     private int id;
     private String profilePictureURL;
+    @NotBlank(message = "Pet name cannot be blank")
     private String petName;
     private String breed;
     private String species;

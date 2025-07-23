@@ -98,11 +98,10 @@ public class PetJdbcClientRepository implements PetRepository {
     }
 
     @Override
-    public boolean deleteById(int id, int userId) {
-        final String sql = "DELETE FROM pet WHERE id = :id AND userId = :userId";
+    public boolean deleteById(int id) {
+        final String sql = "DELETE FROM pet WHERE id = :id";
         int rows = jdbcClient.sql(sql)
                 .param("id", id)
-                .param("userId", userId)
                 .update();
         return rows > 0;
 
