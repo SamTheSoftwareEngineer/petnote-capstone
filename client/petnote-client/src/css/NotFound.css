@@ -1,0 +1,57 @@
+.not-found-container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #fef6f0, #e0f7fa);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.not-found-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    animation: float 3s ease-in-out infinite;
+}
+
+.dog-image {
+    max-width: 200px;
+    margin-bottom: 1.5rem;
+}
+
+.not-found-box h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.not-found-box p {
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #e85b50;
+}
+
+/* Optional floating animation for cuteness */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
