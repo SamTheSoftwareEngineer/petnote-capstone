@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import "../css/LoginForm.css"
+import { jwtDecode } from "jwt-decode";
 
 const LoginForm = ({setUser}) => {
     const navigate = useNavigate()
@@ -20,9 +21,12 @@ const LoginForm = ({setUser}) => {
             body: JSON.stringify({ username, password }),
         });
         if (200 <= response.status && response.status < 300) {
-            const user = await response.json();
-            setUser(user);
-            localStorage.setItem("user", JSON.stringify(user));
+            const userObj = await response.json();
+            const decodedUserObj = jwtDecode(userObj.jwt);
+            const completeUserObj = { ...decodedUserObj, ...userObj}
+            setUser(completeUserObj);
+            localStorage.setItem("user", JSON.stringify(completeUserObj));
+
             navigate("/dashboard");
         } else {
             const errorsPayload = await response.json();

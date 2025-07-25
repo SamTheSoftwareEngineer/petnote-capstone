@@ -1,10 +1,10 @@
 
 
 
-function Dashboard() {
+function Dashboard({user}) {
     return (
         <div>
-            <h1>Dashboard</h1>
+            <h1>Welcome, {user.username}</h1>
             {/* Add your dashboard content here */}
         </div>
     );

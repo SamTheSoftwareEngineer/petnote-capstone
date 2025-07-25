@@ -1,9 +1,19 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import petnotelogo from "../assets/petnote-logo-new.png";
 import "../css/Logout.css"
+import { useEffect } from "react";
 
-function Logout() {
+function Logout({ setUser }) {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        localStorage.removeItem("user")
+        setUser(null)
+    }, [navigate, setUser]);
+
+
     return (
         <div className="thank-you-page">
             <div className="thank-you-card">
@@ -16,9 +26,7 @@ function Logout() {
                 <p>
                     We hope to see you again soon!
                 </p>
-                <Link to="/" className="home-link">
-                    Return to Home Page
-                </Link>
+                <Link to="/" className="home-link">Go back to home</Link>
             </div>
         </div>
     );

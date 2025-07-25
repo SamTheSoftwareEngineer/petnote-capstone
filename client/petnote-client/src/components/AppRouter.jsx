@@ -8,26 +8,29 @@ import Layout from "./Layout"
 import Dashboard from "./Dashboard"
 import Logout from "./Logout"
 import NotFound from "./NotFound"
+import PetList from "./PetList"
+import AddPetForm from "./AddPetForm"
+import EditPetForm from "./EditPetForm"
 
 
 
 const AppRouter = () => {
-    const [user, setUser] = useState(null);
-  
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+    
     const routes = [
 
         // Can access when logged out
         {
             path: "/",
-            element: <Landing />,
+            element: user ? <Navigate to="/dashboard" /> : <Landing />,
         },
         {
             path: "/login",
-            element: <LoginForm setUser={setUser}/>,
+            element: user ? <Navigate to="/dashboard" /> : <LoginForm setUser={setUser}/>,
         },
         {
             path: "/signup",
-            element: <SignUpForm/>,
+            element: user ? <Navigate to="/dashboard" /> : <SignUpForm/>,
         },
 
 
@@ -39,23 +42,27 @@ const AppRouter = () => {
                 
                 {
                     path: "/dashboard",
-                    element: user ? <Dashboard /> : <Navigate to ="/login" />
+                    element: user ? <Dashboard user={user}/> : <Navigate to ="/" />
                 },
                 {
                     path: "/mypets",
-                    element: user ? <h1>My Pets</h1> : <Navigate to ="/login" />
+                    element: user ? <PetList userId={user.id} /> : <Navigate to ="/" />
                 },
                 {
                     path: "/addpet",
-                    element: user ? <h1>Add Pet</h1> : <Navigate to ="/login" />
+                    element: user ? <AddPetForm userId={user.id} /> : <Navigate to ="/" />
                 },
                 {
                     path: "/notes",
-                    element: user ? <h1>Notes</h1> : <Navigate to ="/login" />
+                    element: user ? <h1>Notes</h1> : <Navigate to ="/" />
+                },
+                {
+                    path: "/editpet/:petId",
+                    element: user ? <EditPetForm user={user} /> : <Navigate to ="/" />
                 },
                 {
                     path: "/logout",
-                    element: <Logout />
+                    element: <Logout setUser={setUser} />
                 },
                 {
                     path: "*",
@@ -67,7 +74,7 @@ const AppRouter = () => {
         },
         {
             path: "/verify",
-            element: <VerifyPage />
+            element: user ? <Navigate to="/dashboard" /> : <VerifyPage />
         },
 
     ]
