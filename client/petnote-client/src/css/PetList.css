@@ -1,0 +1,91 @@
+.pet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.pet-card {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1rem;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pet-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;  /* Makes the image circular */
+  object-fit: cover;
+  border: 2px solid #4cafef;
+}
+
+.pet-info {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 0.5rem 2rem;
+}
+
+.pet-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.pet-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-pet-btn {
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-pet-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-pet-btn {
+  background-color: lightcoral;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-pet-btn:hover {
+  background-color: #f44336;
+}
+
+.note-button {
+  background-color: #4f46e5; /* Indigo-600 */
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.note-button:hover {
+  background-color: #4338ca; /* Indigo-700 */
+}
+
+.note-btn {
+  color: white;
+}
+ 

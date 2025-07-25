@@ -1,0 +1,74 @@
+.add-pet-container {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-pet-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.add-pet-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-pet-form label {
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #444;
+}
+
+.add-pet-form input[type="text"],
+.add-pet-form input[type="number"],
+.add-pet-form input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.add-pet-form button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-pet-form button:hover {
+  background-color: #45a049;
+}
+
+.image-preview {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 150px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+}
+
+.error-messages {
+  margin-top: 10px;
+  color: red;
+  font-size: 14px;
+}
+
+.success-message {
+  margin-top: 10px;
+  color: green;
+  font-size: 14px;
+}
