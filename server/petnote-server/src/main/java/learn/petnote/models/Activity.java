@@ -2,6 +2,7 @@ package learn.petnote.models;
 
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Activity {
@@ -21,16 +22,27 @@ public class Activity {
 
     private boolean completed;
 
+    private LocalDateTime createdAt;
+
     public Activity() {
     }
 
-    public Activity(int id, LocalDateTime activityDate, ActivityName activityName, int petId, int userId, boolean completed) {
+    public Activity(int id, LocalDateTime activityDate, ActivityName activityName, int petId, int userId, boolean completed, LocalDateTime createdAt) {
         this.id = id;
         this.activityDate = activityDate;
         this.activityName = activityName;
         this.petId = petId;
         this.userId = userId;
         this.completed = completed;
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int getId() {

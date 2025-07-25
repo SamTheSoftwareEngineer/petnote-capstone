@@ -34,8 +34,10 @@ public class ActivityJdbcClientRepository implements ActivityRepository {
                 .param("completed", activity.isCompleted())
                 .update(keyHolder, "id");
 
-        activity.setId(keyHolder.getKey().intValue());
-        return activity;
+         activity.setId(keyHolder.getKey().intValue());
+
+        int newId = keyHolder.getKey().intValue();
+        return findById(newId);
     }
 
     @Override
@@ -43,7 +45,7 @@ public class ActivityJdbcClientRepository implements ActivityRepository {
         final String sql = "SELECT * FROM activity WHERE id = :id;";
         return jdbcClient.sql(sql)
                 .param("id", id)
-                .query(Activity.class)
+                .query(new ActivityMapper())
                 .optional()
                 .orElse(null);
     }
@@ -53,7 +55,7 @@ public class ActivityJdbcClientRepository implements ActivityRepository {
         final String sql = "SELECT * FROM activity WHERE petId = :petId;";
         return jdbcClient.sql(sql)
                 .param("petId", petId)
-                .query(Activity.class)
+                .query(new ActivityMapper())
                 .list();
     }
 
@@ -62,7 +64,7 @@ public class ActivityJdbcClientRepository implements ActivityRepository {
         final String sql = "SELECT * FROM activity WHERE userId = :userId;";
         return jdbcClient.sql(sql)
                 .param("userId", userId)
-                .query(Activity.class)
+                .query(new ActivityMapper())
                 .list();
     }
 
