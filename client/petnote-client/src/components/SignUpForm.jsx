@@ -22,6 +22,11 @@ const SignUpForm = () => {
       body: JSON.stringify({ username, email, password }),
     });
     if (200 <= response.status && response.status < 300) {
+      const user = await response.json(); // Parse the registered user
+        console.log("Registered user:", user);
+
+        // Save user info to localStorage
+        localStorage.setItem("user", JSON.stringify(user));
       navigate("/verify");
     } else {
       const errorsPayload = await response.json();

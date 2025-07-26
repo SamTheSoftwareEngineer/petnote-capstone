@@ -236,6 +236,11 @@ Content-Type: application/json
 }
 
 ###
+# Sample request to get all pet activities based on userId
+GET http://localhost:8080/api/activities/user/4/pets-with-activities
+
+
+###
 # Delete happy path
 DELETE http://localhost:8080/api/activities/6?userId=1
 

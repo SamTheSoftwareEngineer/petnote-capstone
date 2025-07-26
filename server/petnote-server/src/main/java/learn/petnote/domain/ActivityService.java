@@ -5,9 +5,11 @@ import learn.petnote.data.ActivityRepository;
 import learn.petnote.data.PetRepository;
 import learn.petnote.models.Activity;
 import learn.petnote.models.Pet;
+import learn.petnote.models.PetsWithActivities;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -48,6 +50,23 @@ public class ActivityService {
         return result;
     }
 
+    // Fetch pets + activities by userId
+    public List<PetsWithActivities> findPetsAndActivitiesByUserId(int userId) {
+        // 1. Fetch all pets by userId
+        List<Pet> pets = petRepository.findByUserId(userId);
+
+        // 2. For each pet, fetch activities by petId
+        List<PetsWithActivities> result = new ArrayList<>();
+
+        for (Pet pet : pets) {
+            List<Activity> activities = repository.findByPetId(pet.getId());
+            result.add(new PetsWithActivities(pet, activities));
+        }
+
+        return result;
+    }
+
+
     // ---------- Read ----------
 
     public Activity findById(int id) {
@@ -74,14 +93,13 @@ public class ActivityService {
             return result;
         }
 
-        // ownership check (use existing.petId to avoid tampering)
+        // ownership check
         Pet pet = petRepository.findById(existing.getPetId());
         if (pet == null || pet.getUserId() != activity.getUserId()) {
             result.addErrorMessage("Unauthorized: pet does not belong to user.", ResultType.INVALID);
             return result;
         }
 
-        // force immutable fields to remain (if you want to lock them):
         activity.setPetId(existing.getPetId());
         activity.setUserId(existing.getUserId());
 

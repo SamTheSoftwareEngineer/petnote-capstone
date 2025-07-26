@@ -11,6 +11,9 @@ import NotFound from "./NotFound"
 import PetList from "./PetList"
 import AddPetForm from "./AddPetForm"
 import EditPetForm from "./EditPetForm"
+import AddActivityForm from "./AddActivityForm"
+import EditActivityForm from "./EditActivityForm"
+import Stats from "./Stats"
 
 
 
@@ -59,6 +62,18 @@ const AppRouter = () => {
                 {
                     path: "/editpet/:petId",
                     element: user ? <EditPetForm user={user} /> : <Navigate to ="/" />
+                },
+                {
+                    path: "/addactivity/:petId",
+                    element: user ? <AddActivityForm user={user} /> : <Navigate to ="/" />
+                },
+                {
+                    path: "/mystats",
+                    element: user ? <Stats user={user} /> : <Navigate to ="/" />
+                },
+                {
+                    path: "dashboard/editactivity/:activityId",
+                    element: user ? <EditActivityForm user={user} /> : <Navigate to ="/" />
                 },
                 {
                     path: "/logout",

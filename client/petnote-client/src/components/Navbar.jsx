@@ -14,6 +14,8 @@ function Navbar() {
                 <ul className="navbar-links">
                     <li><Link to="/mypets">My Pets</Link></li>
                     <li><Link to="/addpet">Add Pet</Link></li>
+                    <li><Link to="/addactivity/:petId">Add Activity</Link></li>
+                    <li><Link to="/mystats">Stats</Link></li>
                     <li><Link to="/notes">Notes</Link></li>
                     <li><Link to="/logout" className="logout-link">Logout</Link></li>
                 </ul>

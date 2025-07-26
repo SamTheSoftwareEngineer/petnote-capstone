@@ -1,0 +1,119 @@
+.dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.pet-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pet-header {
+  display: flex;
+  flex-direction: column; /* Stack image and name vertically */
+  align-items: center;    /* Center horizontally */
+  text-align: center;     /* Center text */
+  margin-bottom: 10px;
+}
+
+.pet-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;     /* Circular image */
+  object-fit: cover;
+  border: 2px solid #ccc;
+  margin-bottom: 8px;     /* Space between photo and name */
+}
+
+
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.no-activities {
+  font-style: italic;
+  color: #777;
+  text-align: center;
+  
+}
+
+.add-activity-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(45deg, #4cafef, #1e88e5);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.add-activity-btn:hover {
+  background: linear-gradient(45deg, #5ec8ff, #2196f3);
+  transform: scale(1.05);
+}
+
+.add-activity-btn:active {
+  transform: scale(0.97);
+}
+
+.activity-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.edit-activity-btn,
+.delete-activity-btn {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Edit button */
+.edit-activity-btn {
+  background-color: #3b82f6; /* blue-500 */
+  color: white;
+  text-decoration: none; /* for Link components */
+}
+
+.edit-activity-btn:hover {
+  background-color: #2563eb; /* blue-600 */
+  transform: translateY(-1px);
+}
+
+/* Delete button */
+.delete-activity-btn {
+  background-color: #ef4444; /* red-500 */
+  color: white;
+}
+
+.delete-activity-btn:hover {
+  background-color: #dc2626; /* red-600 */
+  transform: translateY(-1px);
+}
+
