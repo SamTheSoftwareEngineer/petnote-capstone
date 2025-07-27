@@ -76,13 +76,14 @@ const Dashboard = ({ user }) => {
                   <button className="delete-activity-btn" onClick={() => handleDeleteActivity(activity.id)}>
                   Delete
                   </button>
-                  <Link to={`/addactivity/${pet.id}`} className="add-activity-btn">
-                  Add Activity
-                  </Link>
                 </div>
               </li>
             ))}
+            <Link to={`/addactivity/${pet.id}`} className="add-activity-btn">
+                  Add Activity
+                  </Link>
           </ul>
+          
         ) : (
           <>
             <p className="no-activities">No activities logged for this pet.</p>
