@@ -1,0 +1,39 @@
+.chart-card {
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chart-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.chart-tab {
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border: none;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.chart-tab.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.chart-tab:hover {
+  background: #e2e8f0;
+}
+
+.chart-container {
+  height: 300px;
+}

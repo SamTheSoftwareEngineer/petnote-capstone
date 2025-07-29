@@ -1,5 +1,5 @@
 @url = http://localhost:8080/api/user
-@baseurl = http://localhost:8080/api
+
 # happy path
 POST {{url}}
 Content-Type: application/json
@@ -67,92 +67,6 @@ Content-Type: application/json
     "username": "user1",
     "password": "wrongPassword"
 }
-
-###
-
-# Create pet happy path
-POST {{baseurl}}/pet
-Content-Type: application/json
-
-{
-  "userId": 1,
-  "petName": "Milo",
-  "species": "Dog",
-  "breed": "Labrador"
-}
-
-###
-
-# Create unhappy path --> missing name field
-POST {{baseurl}}/pet
-Content-Type: application/json
-
-{
-  "userId": 1,
-  "species": "Dog"
-}
-
-###
-# Get happy path
-GET {{baseurl}}/pet/5
-
-###
-#Get unhappy path --> non-existent id
-GET {{baseurl}}/pet/999
-
-###
-# Get pets by user id happy path
-
-GET {{baseurl}}/pet/user/3
-
-###
-# Unhappy path (user exists but has no pets)
-GET {{baseurl}}/pet/user/999
-
-### 
-# Update pet happy path 
-PUT {{baseurl}}/pet/5
-Content-Type: application/json
-
-{
-  "id": 5,
-  "userId": 2,
-  "petName": "Milo",
-  "species": "Dog",
-  "breed": "Golden Retriever"
-}
-
-###
-#Update unhappy path -> ID mismatch
-PUT {{baseurl}}/pet/5
-Content-Type: application/json
-
-{
-  "id": 6,
-  "userId": 1,
-  "name": "Milo",
-  "species": "Dog"
-}
-
-###
-# Update unhappy path --> invalid data
-PUT {{baseurl}}/pet/5
-Content-Type: application/json
-
-{
-  "id": 5,
-  "userId": 1
-}
-
-###
-# Delete happy path
-DELETE {{baseurl}}/pet/7
-
-###
-#Delete unhappy path --> non existent id
-DELETE {{baseurl}}/pet/999
-
-
 
 
 

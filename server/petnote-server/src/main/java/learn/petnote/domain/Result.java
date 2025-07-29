@@ -50,4 +50,5 @@ public class Result <T>{
     public int hashCode() {
         return Objects.hash(messages, payload, getResultType());
     }
+
 }

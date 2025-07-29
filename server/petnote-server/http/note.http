@@ -1,0 +1,34 @@
+POST http://localhost:8080/api/notes
+Content-Type: application/json
+
+{
+  "petId": 1,
+  "userId": 1,
+  "description": "Started new training routine today."
+}
+
+###
+
+GET http://localhost:8080/api/notes/pet/1
+
+
+###
+GET http://localhost:8080/api/notes/11
+
+###
+PUT http://localhost:8080/api/notes/11
+Content-Type: application/json
+
+{
+  "id": 11,
+  "petId": 1,
+  "userId": 1,
+  "description": "Updated training routine with evening walks."
+}
+
+###
+
+DELETE http://localhost:8080/api/notes/11?userId=1
+
+
+
