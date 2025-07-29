@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Landing from "./Landing"
 import SignUpForm from "./SignUpForm"
 import LoginForm from "./LoginForm"
@@ -14,12 +14,14 @@ import EditPetForm from "./EditPetForm"
 import AddActivityForm from "./AddActivityForm"
 import EditActivityForm from "./EditActivityForm"
 import Stats from "./Stats"
+import NoteForm from "./NoteForm"
+
 
 
 
 const AppRouter = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-    
+   
     const routes = [
 
         // Can access when logged out
@@ -56,8 +58,8 @@ const AppRouter = () => {
                     element: user ? <AddPetForm userId={user.id} /> : <Navigate to ="/" />
                 },
                 {
-                    path: "/notes",
-                    element: user ? <h1>Notes</h1> : <Navigate to ="/" />
+                    path: "/notes/:petId",
+                    element: user ? <NoteForm user={user} /> : <Navigate to ="/" />
                 },
                 {
                     path: "/editpet/:petId",
