@@ -1,0 +1,83 @@
+.reminders-container {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.reminders-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.pet-card {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.pet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.pet-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.reminder-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reminder-item {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reminder-message {
+  font-weight: 500;
+}
+
+.reminder-time {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.reminder-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+}
+
+.add-btn {
+  background-color: #3b82f6; /* blue */
+}
+
+.edit-btn {
+  background-color: #facc15; /* yellow */
+  color: #333;
+}
+
+.delete-btn {
+  background-color: #ef4444; /* red */
+}

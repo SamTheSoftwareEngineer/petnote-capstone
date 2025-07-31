@@ -15,8 +15,9 @@ import AddActivityForm from "./AddActivityForm"
 import EditActivityForm from "./EditActivityForm"
 import Stats from "./Stats"
 import NoteForm from "./NoteForm"
-
-
+import ReminderList from "./ReminderList"
+import ReminderForm from "./AddReminderForm"
+import EditReminderForm from "./EditReminderForm"
 
 
 const AppRouter = () => {
@@ -80,6 +81,18 @@ const AppRouter = () => {
                 {
                     path: "/logout",
                     element: <Logout setUser={setUser} />
+                },
+                {
+                    path: "/reminderlist",
+                    element: user ? <ReminderList userId={user.id} /> : <Navigate to ="/" />
+                },
+                {
+                    path: "/addreminder/:petId",
+                    element: user ? <ReminderForm userId={user.id}/> : <Navigate to ="/" />
+                },
+                {
+                    path: "/editreminder/:id",
+                    element: user ? <EditReminderForm userId={user.id}/> : <Navigate to ="/" />
                 },
                 {
                     path: "*",

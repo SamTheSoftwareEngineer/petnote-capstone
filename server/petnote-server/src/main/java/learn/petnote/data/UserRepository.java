@@ -14,4 +14,6 @@ public interface UserRepository {
 
     boolean verifyUser(String token);
 
+    User findById(int userId);
+
 }

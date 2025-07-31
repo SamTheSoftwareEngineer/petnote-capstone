@@ -90,5 +90,17 @@ public class UserJdbcClientRepository implements UserRepository{
                 .update() > 0;
     }
 
+    @Override
+    public User findById(int userId) {
+        final String sql = """
+                select * from user where id = :id;""";
+
+        return jdbcClient.sql(sql)
+                .param("id", userId)
+                .query(User.class)
+                .optional()
+                .orElse(null);
+    }
+
 }
 

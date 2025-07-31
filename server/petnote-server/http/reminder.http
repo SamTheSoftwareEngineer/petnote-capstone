@@ -1,0 +1,35 @@
+### Create a new reminder
+POST http://localhost:8080/api/reminders
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "petId": 2,
+  "message": "Vet appointment tomorrow",
+  "remindAt": "2025-07-30T09:00:00"
+}
+
+###
+
+### Get all due reminders (as of now)
+GET http://localhost:8080/api/reminders/due
+
+###
+
+### Mark a reminder as sent
+PUT http://localhost:8080/api/reminders/sent/1
+
+###
+
+### Get all reminders for a specific user
+GET http://localhost:8080/api/reminders/user/1
+
+###
+
+### Delete a reminder by ID
+DELETE http://localhost:8080/api/reminders/1
+
+###
+
+### (Optional) Get all reminders for a specific pet
+GET http://localhost:8080/api/reminders/pet/1
