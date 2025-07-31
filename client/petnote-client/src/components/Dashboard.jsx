@@ -81,7 +81,7 @@ const Dashboard = ({ user }) => {
             ))}
             <Link to={`/addactivity/${pet.id}`} className="add-activity-btn">
                   Add Activity
-                  </Link>
+            </Link>
           </ul>
           
         ) : (

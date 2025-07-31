@@ -54,7 +54,7 @@
   
 }
 
-.add-activity-btn {
+.add-activity-btn{
   display: inline-block;
   padding: 8px 16px;
   background: linear-gradient(45deg, #4cafef, #1e88e5);
@@ -116,4 +116,5 @@
   background-color: #dc2626; /* red-600 */
   transform: translateY(-1px);
 }
+
 

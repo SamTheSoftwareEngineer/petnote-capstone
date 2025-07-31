@@ -15,6 +15,7 @@ function Navbar() {
                     <li><Link to="/mypets">My Pets</Link></li>
                     <li><Link to="/addpet">Add Pet</Link></li>
                     <li><Link to="/mystats">Stats</Link></li>
+                    <li><Link to="/reminderlist">Reminders</Link></li>
                     <li><Link to="/logout" className="logout-link">Logout</Link></li>
                 </ul>
             </div>

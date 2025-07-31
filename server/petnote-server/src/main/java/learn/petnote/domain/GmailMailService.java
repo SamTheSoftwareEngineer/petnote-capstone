@@ -5,6 +5,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class GmailMailService implements MailService {
 
@@ -30,5 +33,29 @@ public class GmailMailService implements MailService {
 
         mailSender.send(message);
     }
+
+    public void sendReminderEmail(String to, String petName, String messageText, LocalDateTime dueDateTime) {
+        String subject = "PetNote Reminder: " + messageText;
+
+        String body = String.format("""
+        Hi there,
+
+        This is a reminder for your pet *%s*:
+        %s
+
+        Scheduled for: %s
+
+        Thanks for using PetNote!
+        """, petName, messageText, dueDateTime.format(DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm")));
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(body);
+
+        mailSender.send(message);
+    }
+
+
 }
 
